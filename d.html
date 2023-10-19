@@ -54,7 +54,9 @@ function component(width, height, color, x, y, type) {
     this.angle = 0;
     this.moveAngle = 0;
     this.x = x;
-    this.y = y;    
+    this.y = y;
+    this.xv = 0;
+    this.yv = 0;
     this.update = function() {
         ctx = myGameArea.context;
         ctx.save();
@@ -66,25 +68,26 @@ function component(width, height, color, x, y, type) {
     }
     this.newPos = function() {
         this.angle += this.moveAngle * Math.PI / 180;
-        this.x += this.speed * Math.sin(this.angle);
-        this.y -= this.speed * Math.cos(this.angle);
+        this.x += this.xv
+        this.y -= this.yv
     }
 }
 
 function updateGameArea() {
     myGameArea.clear();
     myGamePiece.moveAngle = 0;
-    myGamePiece.speed = 0;
-    if (myGameArea.keys && myGameArea.keys[37]) {myGamePiece.moveAngle = -1; }
-    if (myGameArea.keys && myGameArea.keys[39]) {myGamePiece.moveAngle = 1; }
-    if (myGameArea.keys && myGameArea.keys[38]) {myGamePiece.speed= 1; }
-    if (myGameArea.keys && myGameArea.keys[40]) {myGamePiece.speed= -1; }
+    myGamePiece.xv *= 0.9;
+    myGamePiece.yv *= 0.9;
+    if (myGameArea.keys && myGameArea.keys[65]) {myGamePiece.xv += -1; }
+    if (myGameArea.keys && myGameArea.keys[68]) {myGamePiece.xv += 1; }
+    if (myGameArea.keys && myGameArea.keys[87]) {myGamePiece.yv += 1; }
+    if (myGameArea.keys && myGameArea.keys[83]) {myGamePiece.yv += -1; }
     myGamePiece.newPos();
     myGamePiece.update();
 }
 </script>
 
-<p>Make sure the gamearea has focus, and use the arrow keys to move the red square around.</p>
+<p>nigre :0 :0 :0</p>
 
 </body>
 </html>
